@@ -1,0 +1,19 @@
+{
+  "name": "shouldiyoga",
+  "version": "1.0.0",
+  "description": "Tell someone to go to yoga.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mdvacula/shouldIyoga.git"
+  },
+  "author": "Matthew Vacula",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mdvacula/shouldIyoga/issues"
+  },
+  "homepage": "https://github.com/mdvacula/shouldIyoga#readme"
+}
