@@ -1,28 +1,32 @@
 import hello from 'hello-color';
+import css from '../assets/css/style.css'
 
 let colorPicker = document.getElementById("moodColor");
 let gtyDiv = document.getElementById("gtyBox");
 let isHidden;
 
-gtyDiv.style.display = "none";
-isHidden = true;
+ gtyDiv.style.display = "none";
+ isHidden = true;
 
 let watchColorPicker = (event) => {
     var pickedColor = event.target.value;
-    console.log("Picked Color: " + pickedColor);
     var textColor = hello(pickedColor);
-    console.log(textColor);
-    
-    gtyDiv.style.backgroundColor = pickedColor;
-    gtyDiv.style.color = textColor.color
-    document.body.style.color = pickedColor;
-    document.body.style.backgroundColor = textColor.color;
+   
+    stylePage(pickedColor, textColor.color)
     showDiv();
+}
+
+let stylePage = (body, text) =>{
+    document.body.style.color = body;
+    document.body.style.backgroundColor = text;
+    gtyDiv.style.backgroundColor = body;
+    gtyDiv.style.color = text;
 }
 
 let showDiv = () => {
     if(isHidden){
         gtyDiv.style.display = "block"
+        isHidden = false;
     }
 }
 
