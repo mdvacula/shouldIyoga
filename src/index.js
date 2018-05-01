@@ -1,14 +1,16 @@
 import hello from 'hello-color';
-import css from '../assets/css/style.css'
+import html2canvas from 'html2canvas';
+import fileSaver from 'file-saver';
+import css from '../assets/css/style.css';
 
-let colorPicker = document.getElementById("moodColor");
 let gtyDiv = document.getElementById("gtyBox");
 let isHidden;
 let col;
- gtyDiv.style.display = "none";
- isHidden = true;
 
+gtyDiv.style.display = "none";
+isHidden = true;
 
+//handle mouse movements
 let processMouse = (event) => {
     let r = (window.event.clientX /255)*100;
     let g = (window.event.clientY /255)*100;
@@ -19,23 +21,21 @@ let processMouse = (event) => {
    document.body.style.backgroundColor = col;
 }
 
+//pick the color and pass the colors to style page
 let pickColor = (event) => {
-    console.log(col);
-    var pickedColor = col;
-    var textColor = hello(pickedColor);
-   
-    stylePage(pickedColor, textColor.color)
-    showDiv();
-}
+    console.log(event.path[0]);
+     if(event.path[0].getAttribute('id') != 'gtyBox'){
+        var pickedColor = col;
+        var textColor = hello(pickedColor);
+        stylePage(pickedColor, textColor.color);
+        showDiv();
+        }
+    }
 
-window.onmousemove = processMouse;
-window.onmousedown = pickColor;
- 
-
-
+//change the colors
 let stylePage = (body, text) =>{
     document.body.style.color = body;
-    document.body.style.backgroundColor = text;
+    // document.body.style.backgroundColor = text;
     gtyDiv.style.backgroundColor = body;
     gtyDiv.style.color = text;
 }
@@ -47,4 +47,17 @@ let showDiv = () => {
     }
 }
 
-colorPicker.addEventListener("change", watchColorPicker, false);
+let printDiv = () => {
+    let div = gtyDiv;
+    let background = gtyDiv.style.backgroundColor;
+    html2canvas(div,{backgroundColor: `${background}`}).then((canvas)=>{
+            console.log(canvas);
+        canvas.toBlob((blob)=> {
+            fileSaver.saveAs(blob, "shIyoga.png");
+        });
+    });
+}
+
+window.onmousemove = processMouse;
+document.body.onclick = pickColor;
+gtyDiv.onclick = printDiv;
