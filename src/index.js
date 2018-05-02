@@ -12,8 +12,11 @@ isHidden = true;
 
 //handle mouse movements
 let processMouse = (event) => {
-    let r = (window.event.clientX /255)*100;
-    let g = (window.event.clientY /255)*100;
+    let iW = window.innerWidth;
+    let iH = window.innerHeight;
+    let r = (window.event.clientX / iW)*1000;
+    let g = (window.event.clientY / iH)*1000;
+    console.log(`${r}, ${g}`);
     let b = (r/g)*10;
 
     col = `rgb(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)})`;
