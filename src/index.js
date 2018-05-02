@@ -16,7 +16,6 @@ let processMouse = (event) => {
     let iH = window.innerHeight;
     let r = (window.event.clientX / iW)*1000;
     let g = (window.event.clientY / iH)*1000;
-    console.log(`${r}, ${g}`);
     let b = (r/g)*10;
 
     col = `rgb(${r.toFixed(0)},${g.toFixed(0)},${b.toFixed(0)})`;
@@ -38,7 +37,7 @@ let pickColor = (event) => {
 //change the colors
 let stylePage = (body, text) =>{
     document.body.style.color = body;
-    // document.body.style.backgroundColor = text;
+    document.body.style.backgroundColor = text;
     gtyDiv.style.backgroundColor = body;
     gtyDiv.style.color = text;
 }
